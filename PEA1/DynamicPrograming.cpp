@@ -24,7 +24,7 @@ DynamicPrograming::DynamicPrograming(const string fileName)
 		{
 
 			this->utilities.cityFile >> this->numberOfCities;
-			cout << "ilosc miast = " << this->numberOfCities << endl;
+			//cout << "ilosc miast = " << this->numberOfCities << endl;
 
 			this->cities = new int*[numberOfCities];
 			for (auto i = 0; i < numberOfCities; i++) {
@@ -36,7 +36,7 @@ DynamicPrograming::DynamicPrograming(const string fileName)
 				}
 			}
 
-			this->utilities.showMatrix(this->cities, this->numberOfCities);
+			//this->utilities.showMatrix(this->cities, this->numberOfCities);
 		}
 	}
 
@@ -44,9 +44,21 @@ DynamicPrograming::DynamicPrograming(const string fileName)
 	this->state.swap(init);
 	for (auto& neighbors : state)
 		neighbors = vector<int>((1 << this->numberOfCities) - 1, INT_MAX);
-	cout << "Wynik dzialania 1 << this->numberOfCities) - 1 = " <<( 1 << this->numberOfCities - 1)<<endl;
-	
+
+	//cout << "Wynik dzialania 1 << this->numberOfCities) - 1 = " <<( 1 << this->numberOfCities - 1)<<endl;
+
+	long long int frequency, start, elapsed; //variable for counting executing time
+	QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+
+	start = this->utilities.read_QPC();
 	cout << "Minimalna droga wg programowania dynamicznego: " << this->algorithm(0, 1) << endl;
+	elapsed = this->utilities.read_QPC() - start;
+
+	cout << "Time [ms] = " << setprecision(0) << (1000.0 * elapsed) / frequency << endl;
+	this->utilities.buffer <<"Cities: "<<this->numberOfCities<< " Time [ms] = " << setprecision(0) << (1000.0 * elapsed) / frequency << endl;
+	this->utilities.save_data(this->utilities.buffer.str(), "savedData.txt", "Dynamic Programming");
+
+
 	//cout << "Droga: " << this->finalPath <<	endl;
 }
 

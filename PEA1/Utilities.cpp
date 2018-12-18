@@ -18,17 +18,24 @@ void Utilities::showMatrix(int **tab, int numberOfCities) {
 }
 
 
-void Utilities::save_data(double czas_wykonania, const string filename)
+void Utilities::save_data(string czas_wykonania, const string filename,const string algorithm)
 {
 	fstream plik;
 	plik.open("savedData.txt", std::ios::app | std::ios::out);
 	if (plik.good() == true)
 	{
-		plik << "czas wykonania: " << " " << czas_wykonania << std::endl;
+		plik << algorithm<<" "  << czas_wykonania << std::endl;
 
 		plik.close();
 	}
 }
+long long int Utilities::read_QPC()
+{
+	LARGE_INTEGER count;
+	QueryPerformanceCounter(&count);
+	return((long long int)count.QuadPart);
+}
+
 
 
 

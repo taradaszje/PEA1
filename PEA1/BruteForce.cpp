@@ -23,7 +23,7 @@ BruteForce::BruteForce(const string fileName)
 		{
 			
 			this->utilities.cityFile >>this->numberOfCities;
-			cout << "ilosc miast = " << this->numberOfCities << endl;
+			//cout << "ilosc miast = " << this->numberOfCities << endl;
 
 			this->cities = new int*[numberOfCities];
 			for (auto i = 0; i < numberOfCities; i++) {
@@ -35,7 +35,7 @@ BruteForce::BruteForce(const string fileName)
 				}
 			}
 		
-			this->utilities.showMatrix(this->cities,this->numberOfCities);
+			//this->utilities.showMatrix(this->cities,this->numberOfCities);
 		}
 	}
 }
@@ -53,6 +53,9 @@ int BruteForce::algorithm()
 	int min_path = INT_MAX;
 	string path;
 	string finalPath;
+	long long int frequency, start, elapsed; //variable for counting executing time
+	QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+	start = this->utilities.read_QPC();
 	do {
 		//finalPath2 = "a";
 		// store current Path weight(cost) 
@@ -76,9 +79,16 @@ int BruteForce::algorithm()
 
 
 	} while (next_permutation(vertex.begin(), vertex.end()));
+	elapsed = this->utilities.read_QPC() - start;
+	
+	this->utilities.buffer <<"Cities: " << this->numberOfCities<< " Time [ms] = " << setprecision(0) << (1000.0 * elapsed) / frequency << endl;
+	cout<< "Time [ms] = " << setprecision(0) << (1000.0 * elapsed) / frequency << endl;
+	
+	this->utilities.save_data(this->utilities.buffer.str(), "savedData.txt", "BruteForce");
+
 	cout <<"Minimalna sciezka dla algorytmu bruteforce :"<< min_path << endl;
 	finalPath.append("0");
-	cout << "Sciezka: " << finalPath<<endl;
+	cout << "Sciezka: " << finalPath<<endl<<endl;
 	return min_path;
 }
 

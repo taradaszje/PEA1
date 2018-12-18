@@ -1,0 +1,24 @@
+BruteForce Cities: 8 Time [ms] = 1.29435
+
+Dynamic Programming Cities: 8 Time [ms] = 0.234869
+
+Dynamic Programming Cities: 10 Time [ms] = 0.914214
+
+Dynamic Programming Cities: 12 Time [ms] = 5.09291
+
+Dynamic Programming Cities: 13 Time [ms] = 10.6879
+
+Dynamic Programming Cities: 13 Time [ms] = 6.84476
+
+Dynamic Programming Cities: 14 Time [ms] = 21.0392
+
+Dynamic Programming Cities: 15 Time [ms] = 25.8214
+
+Dynamic Programming Cities: 17 Time [ms] = 129.6
+
+Dynamic Programming Cities: 22 Time [ms] = 11366.1
+
+Dynamic Programming Cities: 22 Time [ms] = 11421.5
+
+BruteForce Cities: 12 Time [ms] = 14071.7
+
